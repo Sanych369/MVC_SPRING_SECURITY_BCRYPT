@@ -1,4 +1,4 @@
-package spring_mvc.service;
+package spring_mvc.util;
 
 import spring_mvc.model.Role;
 

@@ -33,7 +33,8 @@
             <tr>
                 <td><c:out value="${users.id}" /></td>
                 <td><c:out value="${users.username}" /></td>
-                <td><c:out value="${users.password}" /></td>
+<%--                <td><c:out value="${users.password}" /></td>--%>
+                <td>Недоступно</td>
                 <td><c:out value="${users.email}" /></td>
                 <td>
                     <c:forEach var="role" items="${users.roles}">

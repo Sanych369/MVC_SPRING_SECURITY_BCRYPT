@@ -5,7 +5,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import spring_mvc.model.User;
 import spring_mvc.service.UserService;
-import spring_mvc.service.UtilService;
+import spring_mvc.util.UtilService;
 
 import java.util.List;
 

@@ -13,7 +13,7 @@
 <body>
 <div align="center">
     <div>
-        <a href="${pageContext.request.contextPath}/logout">Logout</a>
+        <a href="${pageContext.request.contextPath}/logout">Выйти</a>
     </div>
     <table border="1" cellpadding="5">
         <caption><h2>Информация о пользователе</h2></caption>

@@ -1,10 +1,11 @@
-package spring_mvc.service;
+package spring_mvc.security;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import spring_mvc.service.UserService;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {

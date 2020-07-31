@@ -1,6 +1,7 @@
 package spring_mvc.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import spring_mvc.dao.UserDao;
@@ -18,8 +19,8 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private RoleService roleService;
 
-//    @Autowired
-//    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Transactional
     @Override
@@ -50,7 +51,7 @@ public class UserServiceImpl implements UserService {
         }
 
         user.setRoles(Collections.singleton(roleService.getRole(1L))); //Назначаем по умолчанию новому юзеру роль USER
-//        user.setPassword(user.getPassword());
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 //        bCryptPasswordEncoder.encode
         userDao.addUser(user);
         return true;
@@ -67,7 +68,7 @@ public class UserServiceImpl implements UserService {
     @Transactional
     @Override
     public void editUser(User user) {
-//        user.setPassword(user.getPassword());
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 //        bCryptPasswordEncoder.encode
         userDao.editUser(user);
     }
