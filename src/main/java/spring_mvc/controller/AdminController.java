@@ -1,5 +1,7 @@
 package spring_mvc.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -10,47 +12,50 @@ import spring_mvc.util.UtilService;
 import java.util.List;
 
 @Controller
-@RequestMapping("/admin")
+//@RequestMapping("/")
 public class AdminController {
 
     private final UserService userService;
 
+    @Autowired
     public AdminController(UserService userService) {
         this.userService = userService;
     }
 
-    @GetMapping({"/", ""})
-    public String listUsers(ModelMap modelMap) {
+    @GetMapping("/admin")
+    public String listUsers(ModelMap modelMap, Authentication authentication) {
         List<User> users = userService.listUsers();
         modelMap.put("users", users);
+        System.out.println((User)authentication.getPrincipal());
+        System.out.println(users);
         return "index";
     }
 
-    @GetMapping("/addUser")
+    @GetMapping("/admin/addUser")
     public String getAddUser() {
         return "addUser";
     }
 
-    @PostMapping("/addUser")
+    @PostMapping("/admin/addUser")
     public String addUser(@ModelAttribute User user) {
         userService.addUser(user);
         return "redirect:";
     }
 
-    @GetMapping("/deleteUser")
+    @GetMapping("/admin/deleteUser")
     public String deleteUser(@RequestParam(value = "id") Long id) {
         userService.deleteUser(id);
         return "redirect:";
     }
 
-    @GetMapping("/editUser")
+    @GetMapping("/admin/editUser")
     public String editUserGet(@RequestParam(value = "id") Long id, ModelMap modelMap) {
         User user = userService.getUserById(id);
         modelMap.put("user", user);
         return "editUser";
     }
 
-    @PostMapping("/editUser")
+    @PostMapping("/admin/editUser")
     public String editUserPost(@ModelAttribute User user, @RequestParam(value = "role") String[] rolesArr) {
         user.setRoles(UtilService.stringArrToSetRoles(rolesArr));
         userService.editUser(user);

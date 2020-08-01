@@ -52,7 +52,6 @@ public class UserServiceImpl implements UserService {
 
         user.setRoles(Collections.singleton(roleService.getRole(1L))); //Назначаем по умолчанию новому юзеру роль USER
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-//        bCryptPasswordEncoder.encode
         userDao.addUser(user);
         return true;
     }
@@ -69,7 +68,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public void editUser(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-//        bCryptPasswordEncoder.encode
         userDao.editUser(user);
     }
 }

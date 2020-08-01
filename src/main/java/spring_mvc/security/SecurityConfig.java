@@ -22,7 +22,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());  // конфигурация для прохождения аутентификации
-//                );
     }
 
     @Override
@@ -47,9 +46,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/login").anonymous() //Незалогиненный пользователь может посещать только страницу /login
                 .antMatchers("/admin", "/admin/**")
-                .hasAuthority("ROLE_ADMIN") //ADMIN может посещать страницы /admin/**
+                .access("hasAuthority('ADMIN')")//ADMIN может посещать страницы /admin/**
                 .antMatchers("/hello")
-                .hasAuthority("ROLE_USER"); //USER может посещать страницу /hello
+                .access("hasAuthority('USER')");//USER посещает страницу /hello
     }
 
 //                .access("hasAnyRole('ROLE_USER')")
@@ -58,6 +57,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     // Необходимо для шифрования паролей
     // В данном примере не используется, отключен
+
 //    @Bean
 //    public PasswordEncoder passwordEncoder() {
 //        return NoOpPasswordEncoder.getInstance();

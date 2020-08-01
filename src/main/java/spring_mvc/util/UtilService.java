@@ -11,11 +11,11 @@ public class UtilService {
 
         Set<Role> roles = new HashSet<>();
         for (String role : rolesArr) {
-            if (role.equals("ROLE_ADMIN")) {
+            if (role.equals("ADMIN")) {
                 Role roleAdmin = new Role(2L, "ADMIN");
                 roles.add(roleAdmin);
             }
-            if (role.equals("ROLE_USER")) {
+            if (role.equals("USER")) {
                 Role roleUser = new Role(1L, "USER");
                 roles.add(roleUser);
             }
