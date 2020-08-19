@@ -24,10 +24,10 @@ public class AdminController {
 
     @GetMapping("/admin")
     public String listUsers(ModelMap modelMap, Authentication authentication) {
-        List<User> users = userService.listUsers();
-        modelMap.put("users", users);
-        System.out.println((User)authentication.getPrincipal());
-        System.out.println(users);
+        List<User> userList = userService.listUsers();
+        modelMap.put("users", userList);
+        System.out.println(authentication.getPrincipal());
+        System.out.println(userList);
         return "index";
     }
 

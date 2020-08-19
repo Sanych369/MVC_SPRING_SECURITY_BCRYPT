@@ -1,6 +1,7 @@
 package spring_mvc.config;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+import spring_mvc.security.SecurityConfig;
 
 public class AppInit extends AbstractAnnotationConfigDispatcherServletInitializer {
 
@@ -8,7 +9,7 @@ public class AppInit extends AbstractAnnotationConfigDispatcherServletInitialize
     @Override
     protected Class<?>[] getRootConfigClasses() {
         return new Class<?>[]{
-//                HibernateConfig.class, SecurityConfig.class
+                HibernateConfig.class, SecurityConfig.class
         };
     }
 

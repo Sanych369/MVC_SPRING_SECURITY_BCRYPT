@@ -1,7 +1,6 @@
 package spring_mvc.security;
 
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 import spring_mvc.model.Role;
@@ -12,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Component
 public class LoginSuccessHandler implements AuthenticationSuccessHandler {
@@ -27,14 +25,14 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
         User user = (User) authentication.getPrincipal();
         System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         System.out.println(user);
-        List<String> rolelist = new ArrayList<>();
+        List<String> roleList = new ArrayList<>();
         for (Role role : user.getRoles()) {
-            rolelist.add(role.getName());
+            roleList.add(role.getName());
         }
-        System.out.println(rolelist);
-        if (rolelist.contains("ADMIN")) {
+        System.out.println(roleList);
+        if (roleList.contains("ROLE_ADMIN")) {
             httpServletResponse.sendRedirect("/admin");
-        } else if (rolelist.contains("USER")){
+        } else if (roleList.contains("ROLE_USER")) {
             httpServletResponse.sendRedirect("/hello");
         } else {
             System.out.println("Для такого пользователя нет кабинета");

@@ -46,9 +46,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/login").anonymous() //Незалогиненный пользователь может посещать только страницу /login
                 .antMatchers("/admin", "/admin/**")
-                .access("hasAuthority('ADMIN')")//ADMIN может посещать страницы /admin/**
+                .access("hasAuthority('ROLE_ADMIN')")//ADMIN может посещать страницы /admin/**
                 .antMatchers("/hello")
-                .access("hasAuthority('USER')");//USER посещает страницу /hello
+                .access("hasAuthority('ROLE_USER')");//USER посещает страницу /hello
     }
 
 //                .access("hasAnyRole('ROLE_USER')")
